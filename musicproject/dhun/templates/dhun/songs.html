@@ -1,0 +1,45 @@
+{%  extends 'dhun/master.html' %}
+{% block title %}{{ deepu.title }}{% endblock %}
+{% block body %}
+<div class='row'>
+    <div class='col-sm-6 col-md-4'>
+        <div class="card" style="width: 18rem;">
+            <img src="{{deepu.image.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{deepu.title }}</h5>
+              <p class="card-text">Release:{{ deepu.release }},genre:{{ deepu.genre }}</p>
+              <a href="{% url 'dhun:addsong' deepu.id%}" class="btn btn-primary">addsong</a>
+            </div>
+          </div>
+    </div>
+    <div class='col'>
+    {% if deepu.song_set.all %}
+        <table class="table table-bordered">
+        <thead>
+        <td>name</td>
+        <td>lyricist</td>
+        <td>genre</td>
+        <td>action</td>
+        <td></td>
+        </thead>
+        {% for i in deepu.song_set.all %}
+        <tr>
+            <td>{{ i.title }}</td>
+            <td>{{ i.lyricists }}</td>
+            <td>{{ i.genre }}</td>
+            <td><audio controls="controls" src="{{ i.file.url }}"></audio></td>
+            {% if request.user.is_authenticated %}
+            <td>
+                <a href="{% url 'dhun:upsong' i.id%}" class="btn btn-primary">up</a>
+                <a href="{% url 'dhun:delsong' i.id%}" class="btn btn-primary">del</a>
+            </td>
+            {%endif%}
+        </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <h1>no song to display</h1>
+    {% endif %}
+</div>
+</div>
+{% endblock %}

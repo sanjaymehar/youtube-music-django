@@ -1,0 +1,11 @@
+{% extends 'dhun/master.html'%}
+{%block title%} album {%endblock%}
+{%block body%}
+<form method='POST' enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{form.as_table}}
+    </table>
+<input type="submit" value='submit'>
+</form>
+{%endblock%}

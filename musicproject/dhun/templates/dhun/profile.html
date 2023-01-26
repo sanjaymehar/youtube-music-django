@@ -1,0 +1,19 @@
+{%extends 'dhun/master.html'%}
+{%block title%}{{request.user.username}} profile{%endblock%}
+{%block body%}
+<p>
+    <div>
+        firstname: {{request.user.first_name}}
+
+    </div><br>
+    <div>last tname:{{request.user.last_name}}</div><br>
+    <div>email:{{request.user.email}}</div><br>
+    <div>profile image: <img src="{{request.user.profile.photo.url}}" alt="" style="width: 200px;">
+        </div><br>
+    <div>bio:{{request.user.profile.bio}}</div><br>
+    <div>
+    <a href="{% url 'dhun:editprofile' request.user.profile.id %}" class="btn btn-primary">update</a>
+</div> 
+    
+</p>
+{%endblock%}

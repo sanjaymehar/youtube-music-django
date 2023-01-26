@@ -1,0 +1,19 @@
+{% extends 'dhun/master.html' %}
+{% block title %}Home{% endblock %}
+{% block body %}
+<form method="POST" enctype="multipart/form-data">
+    {%csrf_token%}
+<div class ='row'>
+    <div class="col-sm-6 col-md-4">
+    <div class="card" style="width: 18rem;">
+  <img src="{{data.image.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{data.title }}</h5>
+    <p class="card-text">Release:{{ data.release }},genre:{{ data.genre }}</p>
+    <input type="submit" value='confirm'>
+  </div>
+</div>
+    </div>
+</div>
+</form>
+{% endblock %}
